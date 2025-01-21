@@ -1,6 +1,6 @@
 import express from "express";
 import connectDB from "./config/db.js";
-
+import cors from "cors";
 import logger from "./middleware/logger.js";
 import dotenv from "dotenv";
 import apiRouter from "./routes/index.js";
@@ -9,7 +9,13 @@ dotenv.config(); // Load environment variables
 
 // Initialize app
 const app = express();
-
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 // Middleware
 app.use(express.json()); // Parse JSON request body
 app.use(logger); // Log requests

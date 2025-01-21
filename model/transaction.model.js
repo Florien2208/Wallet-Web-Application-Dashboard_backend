@@ -1,6 +1,5 @@
-// models/Transaction.js
-import e from "express";
 import mongoose from "mongoose";
+
 const transactionSchema = new mongoose.Schema(
   {
     type: {
@@ -21,6 +20,10 @@ const transactionSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
       required: true,
+    },
+    subCategory: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "SubCategory",
     },
     account: {
       type: String,

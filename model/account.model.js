@@ -5,19 +5,13 @@ import mongoose from "mongoose";
 
 const accountSchema = new mongoose.Schema(
   {
+   
     name: {
-      type: String,
-      required: true,
-    },
-    type: {
       type: String,
       enum: ["bank", "mobile_money", "cash"],
       required: true,
     },
-    balance: {
-      type: Number,
-      default: 0,
-    },
+
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

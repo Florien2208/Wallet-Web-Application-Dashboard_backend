@@ -14,7 +14,7 @@ const budgetController = {
         amount,
         startDate,
         endDate,
-        category: categoryId,
+        // category: categoryId,
         userId,
       });
 
@@ -23,7 +23,18 @@ const budgetController = {
       res.status(500).json({ message: error.message });
     }
   },
+  async getAllBudgets(req, res) {
+    try {
+      const userId = req.user.id;
+      const budgets = await Budget.find({ userId })
+       
+        .sort({ createdAt: -1 }); // Sort by newest first
 
+      res.status(200).json(budgets);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
   // Get budget notifications
   async getBudgetNotifications(req, res) {
     try {

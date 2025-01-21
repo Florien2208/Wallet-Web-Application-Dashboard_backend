@@ -6,6 +6,7 @@ import { authMiddleware } from "../auth/auth.js";
 const BudgetRouter = express.Router();
 BudgetRouter.use(authMiddleware);
 // Budget routes
+BudgetRouter.get("/", budgetController.getAllBudgets);
 BudgetRouter.post("/", budgetController.createBudget);
 BudgetRouter.get(
   "/notifications",

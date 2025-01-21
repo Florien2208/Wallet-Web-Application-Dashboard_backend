@@ -1,22 +1,20 @@
 // routes/account.js
 import express from "express";
 
-
 import { authMiddleware } from "../auth/auth.js";
 import Account from "../model/account.model.js";
 
 const accountRouter = express.Router();
 accountRouter.use(authMiddleware);
 // Create new account
-accountRouter.post("/",  async (req, res) => {
+accountRouter.post("/", async (req, res) => {
   try {
-    const { name, type, balance } = req.body;
+    const { name } = req.body;
 
     // Create new account with authenticated user's ID
     const account = new Account({
       name,
-      type,
-      balance,
+
       userId: req.user._id,
     });
 
@@ -52,7 +50,7 @@ accountRouter.get("/", async (req, res) => {
 });
 
 // Get single account by ID
-accountRouter.get("/:id",  async (req, res) => {
+accountRouter.get("/:id", async (req, res) => {
   try {
     const account = await Account.findOne({
       _id: req.params.id,
@@ -74,7 +72,7 @@ accountRouter.get("/:id",  async (req, res) => {
 });
 
 // Update account
-accountRouter.put("/:id",  async (req, res) => {
+accountRouter.put("/:id", async (req, res) => {
   try {
     const updates = req.body;
     const account = await Account.findOne({
@@ -120,7 +118,7 @@ accountRouter.put("/:id",  async (req, res) => {
 });
 
 // Delete account
-accountRouter.delete("/:id",  async (req, res) => {
+accountRouter.delete("/:id", async (req, res) => {
   try {
     const account = await Account.findOneAndDelete({
       _id: req.params.id,
@@ -145,7 +143,7 @@ accountRouter.delete("/:id",  async (req, res) => {
 });
 
 // Get account balance
-accountRouter.get("/:id/balance",  async (req, res) => {
+accountRouter.get("/:id/balance", async (req, res) => {
   try {
     const account = await Account.findOne({
       _id: req.params.id,
@@ -171,7 +169,7 @@ accountRouter.get("/:id/balance",  async (req, res) => {
 });
 
 // Update account balance
-accountRouter.patch("/:id/balance",  async (req, res) => {
+accountRouter.patch("/:id/balance", async (req, res) => {
   try {
     const { amount } = req.body;
 

@@ -23,8 +23,8 @@ const transactionSchema = new mongoose.Schema(
       required: true,
     },
     account: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Account",
+      type: String,
+      enum: ["bank", "mobile_money", "cash"],
       required: true,
     },
     userId: {

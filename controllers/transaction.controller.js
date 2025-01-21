@@ -11,12 +11,12 @@ const transactionController = {
     try {
       const { type, amount, description, categoryId, accountId } = req.body;
       const userId = req.user.id;
-
+console.log("accountId",accountId)
       // Check if account exists
-      const account = await Account.findOne({ _id: accountId, userId });
-      if (!account) {
-        return res.status(404).json({ message: "Account not found" });
-      }
+      // const account = await Account.findOne({ _id: accountId, userId });
+      // if (!account) {
+      //   return res.status(404).json({ message: "Account not found" });
+      // }
 
       // Create transaction
       const transaction = await Transaction.create({
